@@ -11,6 +11,22 @@ SELECT index,
 				'Fulfilment', 
 				'`fulfilled-by`'
 			])}} AS fulfilment_id,
-  qty,
-  amount,
+  {{ dbt_utils.generate_surrogate_key([
+      '`promotion-ids`'
+    ]) }} as promotion_id,
+  {{ dbt_utils.generate_surrogate_key([
+      '`ship-service-level`', 
+      '`Courier Status`', 
+      '`ship-city`', 
+      '`ship-state`', 
+      '`ship-postal-code`', 
+      '`ship-country`'
+    ]) }} as shipment_id,
+  {{ dbt_utils.generate_surrogate_key([
+      '`Sales Channel `'
+    ]) }} as sales_channel_id,
+  Qty AS qty,
+  Amount AS amount,
+  currency,
+  
 FROM `dibimbing-435704.dibimbing.amazon_sale_report`

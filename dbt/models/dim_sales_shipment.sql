@@ -14,6 +14,6 @@ WITH t_data AS (
 
 SELECT 
   {{ dbt_utils.generate_surrogate_key([
-      'ship_service_level', 'ship_city', 'ship_postal_code'
+      'ship_service_level', 'courier_status', 'ship_city', 'ship_state', 'ship_postal_code', 'ship_country'
     ]) }} as shipment_id, *
 FROM t_data
